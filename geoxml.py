@@ -4,42 +4,41 @@ import urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 import ssl
 
-api_key = False
-# If you have a Google Places API key, enter it here
-# api_key = 'AIzaSy___IDByT70'
-# https://developers.google.com/maps/documentation/geocoding/intro
+#-----------------------------
+# Retrieve data from a web page
 
-if api_key is False:
-    api_key = 42
-    serviceurl = 'http://py4e-data.dr-chuck.net/xml?'
-else :
-    serviceurl = 'https://maps.googleapis.com/maps/api/geocode/xml?'
-
-# Ignore SSL certificate errors
+# Create an SSL "contex" for urllib
+# This will Ignore SSL certificate errors
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-while True:
-    address = input('Enter location: ')
-    if len(address) < 1: break
+# URL to retrieve data from
+url = "http://py4e-data.dr-chuck.net/comments_42.xml"
 
-    parms = dict()
-    parms['address'] = address
-    if api_key is not False: parms['key'] = api_key
-    url = serviceurl + urllib.parse.urlencode(parms)
-    print('Retrieving', url)
-    uh = urllib.request.urlopen(url, context=ctx)
+# Make an HTTP connection and make the request
+uh = urllib.request.urlopen(url, context=ctx)
 
-    data = uh.read()
-    print('Retrieved', len(data), 'characters')
-    print(data.decode())
-    tree = ET.fromstring(data)
+# put the response into a varible
+data = uh.read()
 
-    results = tree.findall('result')
-    lat = results[0].find('geometry').find('location').find('lat').text
-    lng = results[0].find('geometry').find('location').find('lng').text
-    location = results[0].find('formatted_address').text
+# debug
+# convert from a "byte" string to a unicode string
+# data.decode()
+ 
+#-----------------------------
+# Extract XML data
 
-    print('lat', lat, 'lng', lng)
-    print(location)
+# Create a py object from the XML data
+tree = ET.fromstring(data)
+
+# Use the "xml" module with an "Xpath expression" to return specified XML elements
+# ".//<string>" selects all <string> elements in the entire tree
+# Since this will find more than 1 elemment, this will be a list
+results = tree.findall('.//count')
+
+# Sum the numbers and print
+print( sum( [ int(x.text) for x in results ] ) )
+
+# debug = input("CTL+c to quit, RTN to continue")
+# lat = results[0].find('geometry').find('location').find('lat').text
