@@ -15,9 +15,9 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # URL to retrieve data from 
 # Sample
-url = "http://py4e-data.dr-chuck.net/comments_42.json"
+#url = "http://py4e-data.dr-chuck.net/comments_42.json"
 # graded
-# url = "http://py4e-data.dr-chuck.net/comments_1123611.json"
+url = "http://py4e-data.dr-chuck.net/comments_1123611.json"
 
 # Make an HTTP connection and make the request 
 uh = urllib.request.urlopen(url, context=ctx) 
