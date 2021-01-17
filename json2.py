@@ -26,7 +26,7 @@ uh = urllib.request.urlopen(url, context=ctx)
 data = uh.read()
 
 # debug 
-# convert from a "byte" string to a unicode string 
+# convert from a "byte" string, or more likely a UTF-8 string, into a unicode string 
 # data.decode() 
 
 #----------------------------- 
