@@ -1,2 +1,9 @@
-# API Example
-## Based on py4e13 Web Services
+# API Usage Examples
+
+Parsing JSON
+
+Retrieving/parsing XML
+
+retrieving/parsing JSON
+
+*based on py4e13 Web Services*
