@@ -14,20 +14,18 @@
 
 import urllib.parse
 
-api_key = 42
-serviceurl = 'http://py4e-data.dr-chuck.net/json?'
-address = "South Federal University"
+API_KEY = 42
+SERVICE_URL = 'http://py4e-data.dr-chuck.net/json?'
+ADDRESS = "South Federal University"
 
 parms = dict()
-parms['address'] = address
-parms['key'] = api_key
+parms['address'] = ADDRESS
+parms['key'] = API_KEY
 
-print( "parms:",parms )
-print("")
+print("parms:", parms, "\n")
 
-print( 'urllib.parse.urlencode(parms):' )
-print( urllib.parse.urlencode(parms) )
-print("")
+print('urllib.parse.urlencode(parms):')
+print(urllib.parse.urlencode(parms), "\n")
 
-print( "serviceurl + urllib.parse.urlencode(parms):" )
-print( serviceurl + urllib.parse.urlencode(parms) ) 
+print("serviceurl + urllib.parse.urlencode(parms):")
+print(SERVICE_URL + urllib.parse.urlencode(parms))
